@@ -1,0 +1,52 @@
+<mxfile host="65bd71144e" modified="2021-01-02T19:45:51.142Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="0r1U10pqVNSBSAuHEA4m" version="13.10.0" type="embed">
+    <diagram id="cdkOOIdGGx4r_Fe1dkrx" name="Page-1">
+        <mxGraphModel dx="750" dy="466" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="20" value="CMSIS DAP" style="label;whiteSpace=wrap;html=1;image=img/clipart/Gear_128x128.png" parent="1" vertex="1">
+                    <mxGeometry x="220" y="120" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="PC" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="10" width="180" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="openocd" style="rounded=0;whiteSpace=wrap;html=1;" parent="27" vertex="1">
+                    <mxGeometry x="80" y="110" width="70" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;shape=flexArrow;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;" edge="1" parent="27" source="17" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="burner&lt;br&gt;firmware&lt;br&gt;elf" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="27" vertex="1">
+                    <mxGeometry x="10" y="30" width="60" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;shape=flexArrow;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=none;startFill=0;" edge="1" parent="27" source="18" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="binary to burn" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="27" vertex="1">
+                    <mxGeometry x="10" y="170" width="60" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;shape=flexArrow;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=block;fillColor=#ffffff;" edge="1" parent="1" source="2" target="20">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="QSPI Flash" style="outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.generic;" vertex="1" parent="1">
+                    <mxGeometry x="500" y="180" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" style="edgeStyle=orthogonalEdgeStyle;shape=flexArrow;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=block;startFill=0;fillColor=#ffffff;" edge="1" parent="1" source="30" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="MCU" style="swimlane;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="100" width="100" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="loader in RAM" style="rounded=0;whiteSpace=wrap;html=1;" parent="30" vertex="1">
+                    <mxGeometry x="20" y="90" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="memory buffer" style="rounded=0;whiteSpace=wrap;html=1;" parent="30" vertex="1">
+                    <mxGeometry x="20" y="150" width="60" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;shape=flexArrow;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=block;fillColor=#ffffff;" edge="1" parent="1" source="20" target="21">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
