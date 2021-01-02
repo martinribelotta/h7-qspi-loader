@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch qspi-burner",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/build/qspi-burner.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [
+                "interface/cmsis-dap.cfg",
+                "target/stm32h7x.cfg"
+            ],
+            "runToMain": true,
+            "preLaunchTask": "make all"
+        }
+    ]
+}
