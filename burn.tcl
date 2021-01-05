@@ -22,6 +22,6 @@ mww $ControlBlock $target_addr
 reset halt
 reg pc $Reset_Handler
 resume
-wait_halt 300000
+wait_halt 30000000
 puts [reg r0]
 exit

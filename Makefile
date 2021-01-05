@@ -68,7 +68,7 @@ LDFLAGS += $(addprefix -l, $(LIBS))
 LDFLAGS += -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref
 LDFLAGS += -Wl,--gc-sections
 LDFLAGS += -Wl,--print-memory-usage
-LDFLAGs += -nostartfiles -nodefaultlibs -nolibc
+LDFLAGS += -nostartfiles -nodefaultlibs -nolibc
 
 SECTIONS := $(sort $(shell grep -oE '\.\S+\s*\:' $(LDSCRIPTS) | tr -d ':'))
 
