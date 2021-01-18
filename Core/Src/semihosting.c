@@ -20,6 +20,11 @@ __attribute__((naked)) int call_host(int reason, void *args)
 }
 #endif
 
+void host_halt(int reason)
+{
+	(void) reason;
+	__asm__ volatile("bkpt #0");
+}
 
 void host_echo(const char *s) {
 	call_host(SEMIHOSTING_SYS_WRITE0, (void*) s);

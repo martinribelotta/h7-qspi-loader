@@ -13,10 +13,14 @@ extern "C" {
 #endif
 
 typedef struct {
-	unsigned int address;
-} Parameters_t;
+	void *MemBuffer;
+	unsigned int MemBufferSize;
+	void (*ErasePage)(unsigned int addr);
+	void (*FlashCopy)(unsigned int flashaddr, unsigned int size);
+	void (*FlashVerify)(unsigned int flashaddr, unsigned int size);
+} FlashAlgorithm_t;
 
-extern Parameters_t ParamBlock;
+extern const FlashAlgorithm_t FlashAlgo;
 
 extern void burner(void);
 

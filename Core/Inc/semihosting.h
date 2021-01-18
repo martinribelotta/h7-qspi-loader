@@ -84,10 +84,7 @@ extern int host_write(int fd, const void *buf, int len);
 extern void host_cmdline(char *buffer, int buflen);
 extern int host_printf(const char *fmt, ...);
 
-static inline void host_halt(int reason)
-{
-	(void) reason;
-	__asm__ volatile("bkpt #0");
-}
+__attribute__((noinline))
+extern void host_halt(int reason);
 
 #endif /* INC_SEMIHOSTING_H_ */
