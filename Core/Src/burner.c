@@ -12,6 +12,63 @@
 
 #include <string.h>
 
+static uint8_t membuffer[65536];
+static uint8_t checkbuf[65536];
+
+static void die(const char *msg)
+{
+	host_echo(msg);
+	host_halt(-1);
+}
+
+static void qspi_check(const char *msg, uint8_t ret)
+{
+	if (ret != QSPI_OK) {
+		die(msg);
+	}
+}
+
+#define QSPI_CHECK(expr) do { \
+	qspi_check(#expr, expr); \
+} while(0)
+
+static void PerformErasePage(unsigned int addr)
+{
+	host_printf("Erasing at 0x%08X\n", addr);
+	QSPI_CHECK(QSPI_WriteEnable(&hqspi));
+	QSPI_CHECK(QSPI_EraseBlock(&hqspi, addr));
+	host_halt(0);
+}
+
+static void PerformFlashCopy(unsigned int flashaddr, unsigned int size)
+{
+	host_printf("Writing at 0x%08X\n", flashaddr);
+	for (unsigned int writed = 0; writed < size; writed += 256) {
+		QSPI_CHECK(QSPI_WriteEnable(&hqspi));
+		QSPI_CHECK(QSPI_Write(&hqspi, membuffer + writed, flashaddr + writed, 256));
+	}
+	host_halt(0);
+}
+
+static void PerformFlashVerify(unsigned int flashaddr, unsigned int size)
+{
+	host_printf("Verifing at 0x%08X\n", flashaddr);
+	QSPI_CHECK(QSPI_Read(&hqspi, checkbuf, flashaddr, size));
+	if (memcmp(checkbuf, membuffer, size) != 0) {
+		die("VERIFY FAIL\n");
+	}
+	host_halt(0);
+}
+
+const FlashAlgorithm_t FlashAlgo = {
+	.MemBuffer = membuffer,
+	.MemBufferSize = sizeof(membuffer),
+	.ErasePage = PerformErasePage,
+	.FlashCopy = PerformFlashCopy,
+	.FlashVerify = PerformFlashVerify,
+};
+
+#if 0
 Parameters_t ParamBlock __attribute__((section(".no_init")));
 
 void hexdump(const uint8_t *p, size_t n) {
@@ -105,3 +162,4 @@ void burner(void) {
 
 	host_halt(0);
 }
+#endif

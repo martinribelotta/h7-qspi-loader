@@ -31,7 +31,8 @@
 
 #define QUAD_INOUT_FAST_READ_DUMMY_CYCLES 6
 
-#define ERASE_CMD     0x20
+#define ERASE_SEC_CMD 0x20
+#define ERASE_BLK_CMD 0xD8
 #define ERASE_ALL_CMD 0x60
 #define WRITE_CMD     0x02
 
@@ -236,14 +237,24 @@ uint8_t QSPI_Write(QSPI_HandleTypeDef *hqspi, const uint8_t *pData, uint32_t Wri
     return QSPI_AutoPollingMemReady(hqspi, HAL_QSPI_TIMEOUT_DEFAULT_VALUE);
 }
 
-uint8_t QSPI_EraseSector(QSPI_HandleTypeDef *hqspi, uint32_t addr)
+static uint8_t doQSPI_Erase(uint8_t ecmd, QSPI_HandleTypeDef *hqspi, uint32_t addr)
 {
-    uint8_t cmd[4] = {ERASE_CMD, (addr >> 16) & 0xff, (addr >> 8) & 0xff, (addr)&0xff};
+    uint8_t cmd[4] = {ecmd, (addr >> 16) & 0xff, (addr >> 8) & 0xff, (addr)&0xff};
     uint8_t r = qspi_send_then_recv(hqspi, cmd, sizeof(cmd), NULL, 0);
     if (r != QSPI_OK) {
         return r;
     }
     return QSPI_AutoPollingMemReady(hqspi, HAL_QSPI_TIMEOUT_DEFAULT_VALUE);
+}
+
+uint8_t QSPI_EraseSector(QSPI_HandleTypeDef *hqspi, uint32_t addr)
+{
+    return doQSPI_Erase(ERASE_SEC_CMD, hqspi, addr);
+}
+
+uint8_t QSPI_EraseBlock(QSPI_HandleTypeDef *hqspi, uint32_t addr)
+{
+    return doQSPI_Erase(ERASE_BLK_CMD, hqspi, addr);
 }
 
 uint8_t QSPI_EraseAll(QSPI_HandleTypeDef *hqspi)
