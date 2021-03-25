@@ -113,4 +113,9 @@ while { $readed < $size } {
 }
 puts "End of program"
 
+if { [env RESET_AT_END false] } {
+    puts "Resetting..."
+    reset run
+}
+
 exit
