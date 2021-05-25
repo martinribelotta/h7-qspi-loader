@@ -12,6 +12,7 @@ static void MX_GPIO_Init(void);
 static void MX_QUADSPI_Init(void);
 
 int main(void) {
+  __enable_irq();
   host_echo("Initializing hardware...\n");
   HAL_Init();
   SystemClock_Config();

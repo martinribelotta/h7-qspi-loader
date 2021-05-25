@@ -965,7 +965,7 @@ HAL_StatusTypeDef HAL_QSPI_Command_IT(QSPI_HandleTypeDef *hqspi, QSPI_CommandTyp
   * @param pData : pointer to data buffer
   * @param Timeout : Timeout duration
   * @note   This function is used only in Indirect Write Mode
-  
+
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_QSPI_Transmit(QSPI_HandleTypeDef *hqspi, uint8_t *pData, uint32_t Timeout)
